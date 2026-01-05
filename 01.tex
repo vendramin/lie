@@ -47,7 +47,15 @@ the \emph{Jacobi identity}.
 
 \begin{example}
   Let $A$ be an associative algebra. Then $A$ together with the bracket
-  $[a,b]=ab-ba$ is a Lie algebra. This Lie algebra is denoted by $L(A)$. 
+  $[a,b]=ab-ba$ is a Lie algebra. Checking the Jacobi identity is
+  straightforward:
+  \begin{align*}
+    [x,[y,z]]+[y,[z,x]]+[z,[x,y]]
+    =x(yz-zy)&-(yz-zy)x\\
+             &+y(zx-xz)-(zx-xz)y\\
+             &+z(xy-yx)-(xy-yx)z=0.
+  \end{align*} 
+  This Lie algebra is denoted by $L(A)$. 
 \end{example}
 
 \begin{exercise}
@@ -59,7 +67,7 @@ the \emph{Jacobi identity}.
       v_2\\
       v_3
     \end{pmatrix}
-    \times
+    \wedge 
     \begin{pmatrix}
       w_1\\
       w_2\\
@@ -83,17 +91,18 @@ the \emph{Jacobi identity}.
 \begin{exercise}
     If $L$ and $L_1$ are Lie algebras, then 
     $L\oplus L_1$ is a Lie algebra with
-    $[(x,x_1),(y,y_1)]=([x,y),(x_1,y_1)]$ for $x,y\in L$ and
+    $[(x,x_1),(y,y_1)]=([x,y],(x_1,y_1)]$ for $x,y\in L$ and
     $x_1,y_1\in L_1$. 
 \end{exercise}
 
 We will mainly work with finite-dimensional complex Lie algebras.
 
-\begin{example}[general linear Lie algebra]
+\begin{example}
 \index{General linear Lie algebra}
     Let $V$ be a finite-dimensional vector space and 
     $\gl(V)$ be the set of linear maps $V\to V$. Then 
-    $\gl(V)$ with $[x,y]=xy-yx$ is a Lie algebra. 
+    $\gl(V)$ with $[x,y]=xy-yx$ is a Lie algebra. This Lie algebra is called 
+    the \emph{general Lie algebra}.
 \end{example}
 
 A matrix version of the previous example: We write $\gl(n,\C)$ 
@@ -108,18 +117,44 @@ $\gl(n,\C)$ has a basis $\{e_{ij}:1\leq i,j\leq n\}$, where
 \]
 
 \begin{exercise}
-    Compute $[e_{ij},e_{ik}]$.
+  \label{xca:formulas}
+  Prove that $[e_{ij},e_{ik}]=\delta_{j,k}e_{il}-\delta_{i,l}e_{kj}$.
 \end{exercise}
 
-\begin{example}[special linear Lie algebra]
+\begin{example}
 \index{Special linear Lie algebra}
     Let $\sl(n,\C)$ be the subspace of $\gl(n,\C)$ consisting
-    of all matrices with trace zero. 
+    of all matrices with trace zero. This Lie algebra is called the
+    \emph{special linear algebra}. 
 \end{example}
 
 \begin{exercise}
     Find a basis of $\sl(n,\C)$. 
 \end{exercise}
+
+For example, a basis of $\sl(2,\C)$ is given by 
+\[
+  h=\begin{pmatrix}
+  1&0\\
+  0&-1
+\end{pmatrix},
+\quad 
+e=\begin{pmatrix}
+  0&1\\
+  0&0
+\end{pmatrix},
+\quad 
+f=\begin{pmatrix}
+  0&0\\
+  1&0
+\end{pmatrix}.
+\]
+Note that
+\[
+[h,e]=2e,\quad
+[h,f]=-2f,\quad
+[e,f]=h.
+\]
 
 %\begin{example}
 %    Let $\bl(n,\C)$ be the subspace of all upper triangular matrices
@@ -128,8 +163,8 @@ $\gl(n,\C)$ has a basis $\{e_{ij}:1\leq i,j\leq n\}$, where
 
 \begin{definition}
   \index{Subalgebra}
-  Let $L$ be a Lie algebra. A subspace $A$ 
-  of $L$ is a Lie \emph{subalgebra} of $L$ if $[A,A]\subseteq A$. 
+  Let $L$ be a Lie algebra. A subspace $A$ of $L$ is a Lie \emph{subalgebra} of
+  $L$ if $[A,A]\subseteq A$. 
 \end{definition}
 
 Of course, $\sl(n,\C)$ is a subalgebra of $\gl(n,\C)$. 
@@ -162,15 +197,26 @@ $\{0\}$ and $L$.
     Compute $Z(\sl(n,\C))$. 
 \end{exercise}
 
+For example, to compute the center of $\sl(2,\C)$, we proceed as follows: 
+Let 
+\[
+  x=\begin{pmatrix}a&b\\c&-a\end{pmatrix}=ah+be+cf
+\]
+be a central element. Then
+\[
+  0=[x,e]=a[h,e]+b[e,e]+c[f,e]=2ae-ch.
+\]
+Since $e$ and $h$ are linearly independent, $a=c=0$. Now 
+$[x,h]=0$ implies that $b=0$. Therefore
+$x=\begin{pmatrix}0&0\\0&0\end{pmatrix}$.
+
 \begin{exercise}
     Prove that $\sl(2,\C)$ has no non-trivial ideals. 
 \end{exercise}
 
-One easily checks that $\sl(n,\C)$ is an ideal of $\gl(n,\C)$. In fact, 
-an ideal is always a subalgebra. The converse is not true. 
-Can you find an example?
-
-
+One easily checks that $\sl(n,\C)$ is an ideal of $\gl(n,\C)$. In fact, an
+ideal is always a subalgebra. The converse is not true.  Can you find an
+example?
 
 \begin{example}
 \index{Derived algebra!of a Lie algebra}
@@ -180,9 +226,6 @@ Can you find an example?
     is an ideal of $L$. 
 \end{example}
 
-
-
-
 \begin{exercise}
   Let $L$ be a Lie algebra and $I$ be an ideal of $L$. 
   Prove that $L/I$ is a Lie algebra with
@@ -190,6 +233,7 @@ Can you find an example?
 \end{exercise}
 
 \begin{definition}
+  \index{Homomorphism}
   Let $L$ and $L_1$ be Lie algebras. A linear map 
   $f\colon L\to L_1$ is a \text{homomorphism} of Lie algebras
   if $f([x,y])=[f(x),f(y)]$ for all $x,y\in L$. 
@@ -200,7 +244,7 @@ a bijective homomorphism of Lie algebras.
 
 \begin{example}
     Let $L$ and $L_1$ be Lie algebras. The canonical injections
-    $L\to L\oplus L_1$ and $L_1\to L_\oplus L_1$ and
+    $L\to L\oplus L_1$ and $L_1\to L\oplus L_1$ and
     the canonical surjections $L\oplus L_1\to L$ and 
     $L\oplus L_1\to L_1$ are Lie algebras homomorphisms.  
 \end{example}
@@ -219,11 +263,14 @@ a bijective homomorphism of Lie algebras.
 \end{example}
 
 \begin{exercise}
-    Let $f\colon L\to L_1$ be a Lie algebra homomorphism. Prove
-    that the \emph{kernel} of $f$, 
-    $\ker f=\{x\in L:f(x)=0\}$ is an ideal
-    of $L$, and that the \emph{image} of $f$ 
-    is a subalgebra of $L_1$. 
+    Let $f\colon L\to L_1$ be a Lie algebra homomorphism. Prove 
+    the following statements: 
+    \begin{enumerate} 
+      \item The \emph{kernel} $\ker f=\{x\in L:f(x)=0\}$ of $f$ is an ideal
+        of $L$. 
+      \item The \emph{image} $f(L)$ of $f$ is a subalgebra of $L_1$. 
+      \item $L/\ker f\simeq f(L)$. 
+    \end{enumerate}
 \end{exercise}
 
 \begin{example}
@@ -250,10 +297,8 @@ Prove the following statements:
 \end{exercise} 
 
 \index{Derivation}
-Let $A$ be a vector space admitting a bilinear operation $A\times A\to A$,
-$(a,b)\mapsto ab$. (We do not assume here that the binary operation is
-associative.) A \emph{derivation} is a linear map $\partial\colon A\to A$ such
-that $\partial(ab)=(\partial a)b+a(\partial b)$ for all $a,b\in A$. 
+A \emph{derivation} of an algebra $A$ is a linear map $\partial\colon A\to A$
+such that $\partial(ab)=(\partial a)b+a(\partial b)$ for all $a,b\in A$. 
 
 \begin{exercise}
   Let $L$ be a Lie algebra and $x\in L$. Prove that 
@@ -265,10 +310,10 @@ that $\partial(ab)=(\partial a)b+a(\partial b)$ for all $a,b\in A$.
   is a Lie subalgebra of $\gl(A)$. 
 \end{example}
 
-\begin{exercise}
-    Let $f\colon L\to L_1$ be a Lie algebra homomorphism.
-    Prove that $f/\ker f\simeq f(L)$. 
-\end{exercise}
+%\begin{exercise}
+%    Let $f\colon L\to L_1$ be a Lie algebra homomorphism.
+%    Prove that $f/\ker f\simeq f(L)$. 
+%\end{exercise}
 
 \begin{definition}
 \index{Simple Lie algebra}
@@ -283,16 +328,77 @@ If $L$ is a simple Lie algebra, then $Z(L)=\{0\}$ and $L=[L,L]$.
     a linear Lie algebra. 
 \end{exercise}
 
-
-
 \begin{bonus}
 \index{Witt Lie algebra}
-  
+Let $A=\C[X,X^{-1}]$. Prove the following statements:
+\begin{enumerate}
+  \item For $i\in\Z$, $d_i=X^i\frac{\partial}{\partial X}$ is a derivation.
+  \item $\{d_i:i\in\Z\}$ is a basis of $\operatorname{Der}(A)$. 
+  \item $[d_i,d_j]=(j-i)d_{i+j}$. 
+  \item $\operatorname{Der}(A)$ is a Lie algebra. 
+\end{enumerate}
+The Lie algebra $\operatorname{Der}(A)$ is called the \emph{Witt Lie algebra}.   
 \end{bonus}
 
 \begin{bonus}
 \index{Virasoro Lie algebra}
+Let $V$ be the complex vector space with basis $\{e_i:i\in\Z\}\cup\{c\}$.
+Define a bracket on the basis of $V$ by 
+\[
+  [e_i,e_j]=(j-i)e_{i+j}+\delta_{i,-j}\frac{i^3-i}{12}c,
+\]
+where
+\[
+  \delta_{x,y}=\begin{cases}
+  1&\text{if $x=y$},\\
+  0&\text{otherwise},
+\end{cases}
+\]
+is the Kronecker function, and $[c,V]=0$. Prove the following statements:
+\begin{enumerate}
+  \item $V$ is a Lie algebra. 
+  \item $\C c$ is an ideal of $V$. 
+  \item $V/\C c$ is isomorphic to the Witt Lie algebra. 
+\end{enumerate}
 \end{bonus}
 
+\section{Representations}
 
+\begin{definition}
+  Let $L$ be a Lie algebra. A \emph{representation} of $L$ 
+  is a Lie algebra homomorphism $\rho\colon L\to\gl(V)$, where
+  $V$ is a finite-dimensional vector space. 
+\end{definition}
+
+\begin{example}
+  \index{Trivial representation}
+  Let $L$ be a Lie algebra and $V$ a vector space. 
+  The \emph{trivial representation}
+  is the representation $L\to\gl(V)$, $x\mapsto 0$. 
+\end{example}
+
+\begin{example}
+  \index{Tautological representation}
+  Let $V$ be a vector space. Then the identity map 
+  $\id\colon\gl(V)\to\gl(V)$ 
+  is a representation. 
+\end{example}
+
+\begin{definition}
+  \index{Module}
+  Let $L$ be a Lie algebra. A $L$-module 
+  is a vector space $V$ together with a bilinear map 
+  $L\times V\to V$, $(x,v)\mapsto x\cdot v$, such that 
+  $[x,y]\cdot v=x\cdot (y\cdot v)-h\cdot (g\cdot v)$ for
+  all $x,y\in L$ and $v\in V$. 
+\end{definition}
+
+There is a bijective correspondence between 
+representations of $L$ and $L$-modules. 
+
+%iFor a Lie algebra $L$, $\Mod{L}$ denotes
+%the category whose objects are $L$-modules and
+%morphisms are $L$-module homomorphisms. $\mod{L}$ is 
+%the full subcategory of $\Mod{L}$ consisting of all 
+%finitely generated $L$-modules.
 
