@@ -444,7 +444,7 @@ faithful. In the basis $\{h,e,f\}$,
 
 \begin{definition}
   \index{Module}
-  Let $L$ be a Lie algebra. A \emph{$L$-module} 
+  Let $L$ be a Lie algebra. A (left) \emph{$L$-module} 
   is a finite-dimensional vector space $V$ together with a bilinear map 
   $L\times V\to V$, $(x,v)\mapsto x\cdot v$, such that 
   $[x,y]\cdot v=x\cdot (y\cdot v)-y\cdot (x\cdot v)$ for
@@ -458,9 +458,119 @@ Conversely, if $V$ is an $L$-module, then the map $\rho\colon L\to\gl(V)$,
 $x\mapsto \rho_x$, where $\rho_x\colon V\to V$, $v\mapsto x\cdot v$, is a
 representation. 
 
-%iFor a Lie algebra $L$, $\Mod{L}$ denotes
-%the category whose objects are $L$-modules and
-%morphisms are $L$-module homomorphisms. $\mod{L}$ is 
-%the full subcategory of $\Mod{L}$ consisting of all 
-%finitely generated $L$-modules.
+\begin{definition}
+  Let $L$ be a Lie algebra and $V$ be an $L$-module. A subspace
+  $W$ of $V$ is a \emph{submodule} of $x\cdot V\subseteq V$ 
+  for all $x\in L$. 
+\end{definition}
+
+If $V$ is a module, $\{0\}$ and $V$ are submodules of $V$. 
+
+\begin{definition}
+  Let $L$ be a Lie algebra and $V$ and $W$ be $L$-modules.
+  A linear map $f\colon V\to W$ is a module \emph{homomorphism} 
+  if $f(x\cdot v)=x\cdot f(v)$ for all $x\in L$ and $v\in V$. 
+\end{definition} 
+
+Easy examples of module homomorphisms are the zero map and the identity. Of
+course, compositions of module homomorphisms are module homomorphisms. 
+
+\begin{example}
+  Let $L$ be a Lie algebra. Then $L$ is an $L$-module with the adjoint
+  representation. Submodules of $L$ are exactly the ideals of $L$. 
+\end{example}
+
+We write
+\[
+  \Hom_L(V,W)=\{f\colon V\to W:f\text{ is a module homomorphism}\}.
+\]
+
+If $f\colon V\to W$ is a module homomorphism, the \emph{kernel} $\ker f=\{v\in
+V:f(v)=0\}$ of $f$, and the \emph{image} $f(V)$ of $f$ are submodules of $V$.
+Moreover, the first isomorphism theorem holds, namely $V/\ker f\simeq f(V)$. 
+
+For a Lie algebra $L$, $\Mod{L}$ denotes the category whose objects are
+$L$-modules and morphisms are $L$-module homomorphisms. $\FgMod{L}$ is the full
+subcategory of $\Mod{L}$ consisting of all finitely generated $L$-modules.
+
+\begin{exercise}
+  Let $L$ be a Lie algebra and $V$ and $W$ be $L$-modules. Prove 
+  the following statements:
+  \begin{enumerate}
+    \item $V\oplus W=\{(v,w):v\in V,w\in W\}$ is an $L$-module
+      with 
+      \[
+        x\cdot (v,w)=(g\cdot v,g\cdot w).
+      \]
+    \item $V\otimes W$ is an $L$-module with 
+      \[
+        x\cdot v\otimes w=(x\cdot v)\otimes w+v\otimes (x\cdot w).
+      \]
+  \end{enumerate}
+\end{exercise}
+
+If $V$ is an $L$-module, $\{0\}$ and $V$ are submodules of $V$. If
+$W$ is a submodule of $V$, then $V/W$ is an $L$-module with $x\cdot
+(v+W)=x\cdot v+W$.
+
+\begin{definition}
+  \index{Module!simple}
+  Let $L$ be a Lie algebra and $V$ a non-zero 
+  $L$-module. We say that $V$ is \emph{simple} if 
+  $\{0\}$ and $V$ are the only submodules of $V$. 
+\end{definition}
+
+One-dimensional modules are simple. 
+
+\begin{example}
+  Let $L$ be a simple Lie algebra. Then $L$ viewed as an $L$-module with the
+  adjoint representation is simple. 
+\end{example}
+
+\index{Representation!irreducible}
+A representation is \emph{irreducible} if and only if the corresponding module
+if simple. 
+
+\begin{definition}
+  \index{Module!indecomposable}
+  Let $L$ be a Lie algebra and $V$ an $L$-module. We say 
+  that $V$ is {indecomposable} if $V\simeq M\oplus N$ 
+  as $L$-modules implies $M=\{0\}$ or $N=\{0\}$. 
+\end{definition}
+
+Simple modules are indecomposable. The converse is not true. 
+
+\begin{definition}
+  \index{Module!completely reducible}
+  Let $L$ be a Lie algebra and $V$ an $L$-module. We say
+  that $V$ is \emph{completely reducible} if 
+  $V=S_1\oplus\cdots\oplus S_k$ for simple $L$-modules 
+  $S_1,\dots,S_k$. 
+\end{definition}
+
+\begin{example}
+  Let $L=\mathfrak{b}(2,\C)$ be the Lie algebra of $2\times 2$ 
+  upper triangular matrices. Then $V=\C^{2\times 1}$ is an 
+  an $L$-module.
+
+  Let $e_1,e_2$ be the standard basis of $V$. 
+  We claim that $\{0\}$, $\langle e_1\rangle$ and $V$ are the only submodules
+  of $V$. From this, it follows that $V$ is indecomposable. 
+  Let $W$ be a non-zero proper submodule of $V$.  
+  Then $\dim M=1$. Let
+  $w=xe_1+ye_2$ be a basis of $W$. Then
+  \[ \begin{pmatrix}0&1\\
+    0&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}
+    =\begin{pmatrix}y\\0\end{pmatrix}\in W  
+    \implies 
+    \begin{pmatrix}y\\0\end{pmatrix}=\lambda\begin{pmatrix}x\\y\end{pmatrix}
+  \]
+  This implies that 
+  $\lambda=0$ or $y=0$. In both cases, 
+  $W=\langle e_1\rangle$. 
+
+  Note that $\langle e_1\rangle$ is a non-zero proper submodule of $V$, so $V$
+  is not simple. 
+\end{example}
+
 
