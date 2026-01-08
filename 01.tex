@@ -447,7 +447,10 @@ faithful. In the basis $\{h,e,f\}$,
   Let $L$ be a Lie algebra. A (left) \emph{$L$-module} 
   is a finite-dimensional vector space $V$ together with a bilinear map 
   $L\times V\to V$, $(x,v)\mapsto x\cdot v$, such that 
-  $[x,y]\cdot v=x\cdot (y\cdot v)-y\cdot (x\cdot v)$ for
+  \[
+    [x,y]\cdot v=x\cdot (y\cdot v)-y\cdot (x\cdot v)
+  \]
+  for
   all $x,y\in L$ and $v\in V$. 
 \end{definition}
 
@@ -549,21 +552,19 @@ Simple modules are indecomposable. The converse is not true.
 \end{definition}
 
 \begin{example}
-  Let $L=\mathfrak{b}(2,\C)$ be the Lie algebra of $2\times 2$ 
-  upper triangular matrices. Then $V=\C^{2\times 1}$ is an 
-  an $L$-module.
+  Let $L=\mathfrak{b}(2,\C)$ be the Lie algebra of $2\times 2$ upper triangular
+  matrices. Then $V=\C^{2\times 1}$ is an $L$-module with the left action given
+  by left multiplication.
 
-  Let $e_1,e_2$ be the standard basis of $V$. 
-  We claim that $\{0\}$, $\langle e_1\rangle$ and $V$ are the only submodules
-  of $V$. From this, it follows that $V$ is indecomposable. 
-  Let $W$ be a non-zero proper submodule of $V$.  
-  Then $\dim M=1$. Let
-  $w=xe_1+ye_2$ be a basis of $W$. Then
+  Let $e_1,e_2$ be the standard basis of $V$.  We claim that $\{0\}$, $\langle
+  e_1\rangle$ and $V$ are the only submodules of $V$. From this, it follows
+  that $V$ is indecomposable.  Let $W$ be a non-zero proper submodule of $V$.
+  Then $\dim M=1$. Let $w=xe_1+ye_2$ be a basis of $W$. Then
   \[ \begin{pmatrix}0&1\\
     0&0\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}
     =\begin{pmatrix}y\\0\end{pmatrix}\in W  
     \implies 
-    \begin{pmatrix}y\\0\end{pmatrix}=\lambda\begin{pmatrix}x\\y\end{pmatrix}
+    \begin{pmatrix}y\\0\end{pmatrix}=\lambda\begin{pmatrix}x\\y\end{pmatrix}.
   \]
   This implies that 
   $\lambda=0$ or $y=0$. In both cases, 
@@ -573,4 +574,16 @@ Simple modules are indecomposable. The converse is not true.
   is not simple. 
 \end{example}
 
-
+\begin{exercise}
+  Let $n\geq2$ and $L=\mathfrak{b}(n,\C)$ be the Lie algebra of $n\times n$ 
+  upper triangular matrices. Prove the following statements: 
+  \begin{enumerate}
+    \item $V=\C^{n\times1}$ is an $L$-module.
+    \item Let $e_1,\dots,e_n$ be the standard basis of $\C^{n\times1}$.
+      For each $k\in\{1,\dots,n\}$, the subspace 
+      $W_k=\langle e_1,\dots,e_k\rangle$ is a submodule of $V$. 
+    \item Every submodule of $V$ is equal to some $W_k$. 
+    \item Each $W_k$ is indecomposable. 
+    \item $V$ is not completely reducible.
+  \end{enumerate}
+\end{exercise}
